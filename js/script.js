@@ -1,4 +1,4 @@
-import { pieChart } from "./drawchart.js";
+import { barChart, lineChart, pieChart } from "./drawchart.js";
 
 // dom elemnets
 const countryList = document.querySelector('.country-list');
@@ -26,6 +26,9 @@ function fetchCountryData(country, date) {
                 let covidData = [singleDayData[0].Confirmed, singleDayData[0].Deaths, singleDayData[0].Recovered, singleDayData[0].Active];
                 pieChart.data.datasets[0].data = covidData;
                 pieChart.update();
+                barChart.data.datasets[0].data = covidData;
+                barChart.update();
+                drawLineChart(lineChart, countryData);
             });
     }
 }
@@ -46,6 +49,30 @@ function fetchCountryList() {
             // set default country value as india
             countryList.value = 'india';
         });
+}
+
+// draw line chart based on availaible data
+function drawLineChart(chart, data) {
+    let labels = [];
+    let confirmedData = [];
+    let deathsData = [];
+    let recovereData = [];
+    let activeData = [];
+
+    data.forEach((item) => {
+        labels.push(item.Date.split('T')[0]);
+        confirmedData.push(item.Confirmed);
+        deathsData.push(item.Deaths);
+        recovereData.push(item.Recovered);
+        activeData.push(item.Active);
+    });
+
+    chart.data.datasets[0].data = confirmedData;
+    chart.data.datasets[1].data = deathsData;
+    chart.data.datasets[2].data = recovereData;
+    chart.data.datasets[3].data = activeData;
+    chart.data.labels = labels;
+    chart.update();
 }
 
 // Event Listeners

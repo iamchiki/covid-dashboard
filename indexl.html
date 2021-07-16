@@ -28,7 +28,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-3">
+            <div class="col-lg-3 col-md-6">
                 <div class="card text-center">
                     <div class="card-body">
                         <h5 class="card-title">Confirmed</h5>
@@ -36,7 +36,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-3">
+            <div class="col-lg-3 col-md-6">
                 <div class="card text-center">
                     <div class="card-body">
                         <h5 class="card-title">Deaths</h5>
@@ -44,7 +44,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-3">
+            <div class="col-lg-3 col-md-6">
                 <div class="card text-center">
                     <div class="card-body">
                         <h5 class="card-title">Recovered</h5>
@@ -52,7 +52,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-3">
+            <div class="col-lg-3 col-md-6">
                 <div class="card text-center">
                     <div class="card-body">
                         <h5 class="card-title">Active</h5>
@@ -62,8 +62,22 @@
             </div>
         </div>
         <div id="chart">
-            <canvas id="pie-chart">
-            </canvas>
+            <div class="row">
+                <div class="col-6 card">
+                    <canvas id="pie-chart">
+                    </canvas>                  
+                </div>
+                <div class="col-6 card">
+                    <canvas id="bar-chart">
+                    </canvas>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 card">
+                    <canvas id="line-chart">
+                    </canvas>                  
+                </div>
+            </div>
         </div>
     </div>
     <script src="js/jquery-3.3.1.min.js"></script>
