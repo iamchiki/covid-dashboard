@@ -1,4 +1,4 @@
-import { barChart, lineChart, pieChart } from "./drawchart.js";
+import { lineChart, pieChart } from "./drawchart.js";
 
 // dom elemnets
 const countryList = document.querySelector('.country-list');
@@ -26,9 +26,8 @@ function fetchCountryData(country, date) {
                 let covidData = [singleDayData[0].Confirmed, singleDayData[0].Deaths, singleDayData[0].Recovered, singleDayData[0].Active];
                 pieChart.data.datasets[0].data = covidData;
                 pieChart.update();
-                barChart.data.datasets[0].data = covidData;
-                barChart.update();
                 drawLineChart(lineChart, countryData);
+                // drawBarchart(barChart, countryData);
             });
     }
 }
@@ -66,12 +65,41 @@ function drawLineChart(chart, data) {
         recovereData.push(item.Recovered);
         activeData.push(item.Active);
     });
-
     chart.data.datasets[0].data = confirmedData;
     chart.data.datasets[1].data = deathsData;
     chart.data.datasets[2].data = recovereData;
     chart.data.datasets[3].data = activeData;
     chart.data.labels = labels;
+    chart.update();
+}
+
+// draw bar chart
+function drawBarchart(chart, data) {
+    let labels = [];
+    let confirmedData = [];
+    let deathsData = [];
+    let recovereData = [];
+    let activeData = [];
+
+    data.forEach((item) => {
+        labels.push(item.Date.split('T')[0]);
+        confirmedData.push(item.Confirmed);
+        deathsData.push(item.Deaths);
+        recovereData.push(item.Recovered);
+        activeData.push(item.Active);
+    });
+    let timePeriod = [labels[0].slice(0, 7)];
+    labels.forEach((date) => {
+        let month = date.slice(0, 7);
+        if (!timePeriod.includes(month)) {
+            timePeriod.push(month);
+        }
+    });
+    chart.data.datasets[0].data = confirmedData;
+    chart.data.datasets[1].data = deathsData;
+    chart.data.datasets[2].data = recovereData;
+    chart.data.datasets[3].data = activeData;
+    chart.data.labels = timePeriod;
     chart.update();
 }
 
