@@ -120,7 +120,6 @@ dateInput.addEventListener('change', () => {
 
 // fetch covid data based on default country(india) and date input value(past 3 days date)
 document.addEventListener('DOMContentLoaded', () => {
-
     let dateObj = new Date();
     // take past 3 days date from current date as latest data for current date is not fetched 
     let date = dateObj.getDate() - 3;
