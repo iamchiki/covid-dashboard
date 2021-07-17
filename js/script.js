@@ -39,6 +39,9 @@ function fetchCountryList() {
             return response.json();
         })
         .then((countries) => {
+            countries.sort((a, b) => {
+                return a.Slug > b.Slug ? 1 : -1;
+            });
             countries.forEach((country) => {
                 const option = document.createElement('option');
                 option.value = country.Slug;
