@@ -58,3 +58,23 @@ export const lineChart = new Chart(lineChartElem, {
     },
     options: {}
 });
+
+// create Bar Chart 
+const barChartElem = document.getElementById('bar-chart').getContext('2d');
+export const barChart = new Chart(barChartElem, {
+    type: 'bar',
+    data: {
+        labels: ['Confirmed', 'Deaths', 'Recovered', 'Active'],
+        datasets: [{
+            label: `No. of Cases`,
+            data: [],
+            backgroundColor: [
+                '#ff638433',
+                '#36a2eb33',
+                '#C6B4CE',
+                '#C2B8A3'
+            ]
+        }]
+    },
+    options: {}
+});

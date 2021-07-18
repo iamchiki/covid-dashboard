@@ -1,4 +1,4 @@
-import { lineChart, pieChart } from "./drawchart.js";
+import { barChart, lineChart, pieChart } from "./drawchart.js";
 
 // dom elemnets
 const countryList = document.querySelector('.country-list');
@@ -26,6 +26,8 @@ function fetchCountryData(country, date) {
                 let covidData = [singleDayData[0].Confirmed, singleDayData[0].Deaths, singleDayData[0].Recovered, singleDayData[0].Active];
                 pieChart.data.datasets[0].data = covidData;
                 pieChart.update();
+                barChart.data.datasets[0].data = covidData;
+                barChart.update();
                 drawLineChart(lineChart, countryData);
                 // drawBarchart(barChart, countryData);
             });
